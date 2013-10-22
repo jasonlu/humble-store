@@ -2,14 +2,8 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
-
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-
-# Use SCSS for stylesheets
+gem 'mysql2'
 gem 'sass-rails', '~> 4.0.0'
-
-# Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
@@ -43,3 +37,13 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'thin'
+gem 'high_voltage'
+gem 'anjlab-bootstrap-rails', '~> 3.0.0.3', :require => 'bootstrap-rails'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+
+gem 'cancan'
+gem 'uuid'

@@ -1,0 +1,37 @@
+<h1>Listing shipping_addresses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Phone</th>
+      <th>Address</th>
+      <th>Zip</th>
+      <th>Note</th>
+      <th>Primary</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shipping_addresses.each do |shipping_address| %>
+      <tr>
+        <td><%= shipping_address.user_id %></td>
+        <td><%= shipping_address.phone %></td>
+        <td><%= shipping_address.address %></td>
+        <td><%= shipping_address.zip %></td>
+        <td><%= shipping_address.note %></td>
+        <td><%= shipping_address.primary %></td>
+        <td><%= link_to 'Show', shipping_address %></td>
+        <td><%= link_to 'Edit', edit_shipping_address_path(shipping_address) %></td>
+        <td><%= link_to 'Destroy', shipping_address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Shipping address', new_shipping_address_path %>

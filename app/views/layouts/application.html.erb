@@ -1,14 +1,47 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>HumbleStore</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title><%= yield(:page_title) %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+  <% unless notice.blank? and alert.blank? %>
+  <div id="flash-msg-container" class="">
+    <p class="alert alert-info"><%= notice %></p>
+    <p class="alert alert-error"><%= alert %></p>
+  </div>
+  <% end %>
+    
+    <div class="container">
 
-<%= yield %>
 
-</body>
+      <div class="masthead">
+        <h3 class="text-muted pull-left"><%= @site_title %></h3>
+        <% unless user_signed_in? %>
+        <%= render :partial => "/devise/shared/login" %>
+        <% else %>
+        <%= render :partial => "/devise/shared/logout" %>
+        <% end %>
+        
+      </div> <!-- /masthead -->
+      <%= render :partial => "/layouts/navbar" %>
+      <div id="content">
+        <%= yield %>
+      </div>
+      <!-- Site footer -->
+      <%= render :partial => "/layouts/footer" %>
+
+    </div> <!-- /container -->
+    
+
+    
+  </body>
 </html>

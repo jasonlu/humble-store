@@ -1,0 +1,20 @@
+<div id="nav-container">
+<ul class="nav nav-justified">
+
+  <% @class = @page_tab == 'home' ? 'active' : '' %>
+  <li class="<%= @class %>"><%= link_to 'Home', '/' %></li>
+  
+  <% @class = @page_tab == 'items' ? 'active' : '' %>
+  <li class="<%= @class %>"><%= link_to 'Products', items_path %></li>
+  
+  <% @class = @page_tab == 'about' ? 'active' : '' %>
+  <li class="<%= @class %>"><%= link_to 'About', page_path('about')  %></li>
+  
+  <% @class = @page_tab == 'contact' ? 'active' : '' %>
+  <li class="<%= @class %>"><%= link_to 'Contact us', page_path('contact')  %></li>
+
+  <% @class = @page_tab == 'cart' ? 'active' : '' %>
+  <li class="<%= @class %>"><%= link_to 'Cart', carts_path %></li>
+
+</ul>
+</div>

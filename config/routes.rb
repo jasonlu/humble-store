@@ -1,4 +1,22 @@
 HumbleStore::Application.routes.draw do
+  resources :cart_items
+
+  resources :carts
+
+  resources :orders
+
+  resources :shipping_addresses
+
+  resources :item_tags
+
+  resources :tags
+
+  resources :categories
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  
+  resources :items
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -53,4 +71,6 @@ HumbleStore::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  root 'high_voltage/pages#show', id: 'home'
 end

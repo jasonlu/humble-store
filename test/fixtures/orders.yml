@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  price: 1.5
+  shipping_address_id: 1
+  shipped: false
+  tracking_number: MyString
+  via: MyString
+  note: MyText
+  cart_id: 1
+
+two:
+  user_id: 1
+  price: 1.5
+  shipping_address_id: 1
+  shipped: false
+  tracking_number: MyString
+  via: MyString
+  note: MyText
+  cart_id: 1

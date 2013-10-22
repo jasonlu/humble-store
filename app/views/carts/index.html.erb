@@ -1,0 +1,36 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="">Item</th>
+      <th class="col-lg-2">Price</th>
+      
+      <th class="col-lg-1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cart.cart_items.each do |c_item| %>
+      <tr>
+        <td><%= link_to c_item.item.title, c_item.item %></td>
+        <td><%= c_item.item.price %></td>
+        <td>
+          <%= link_to cart_path(c_item.uuid), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-default btn-sm pull-right' do %>
+          <span class="glyphicon glyphicon-minus"></span> Remove from cart
+          <% end %>
+        </td>
+      </tr>
+    <% @total_price += c_item.item.price %>
+    <% end %>
+    <tr>
+      <td>Total: </td>
+      <td><span class="price-total"><%= @total_price %></span></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to new_order_path, :class => 'btn btn-primary', :data => {:disable_with => "Loading..." } do %>
+<span class="glyphicon glyphicon-road"></span> Checkout
+<% end %>
