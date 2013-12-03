@@ -1,10 +1,9 @@
-<p id="notice"><%= notice %></p>
+<% unless notice.blank? %>
+<p id="notice" class="alert alert-info"><%= notice %></p>
+<% end %>
 
-<p>
-  <strong>User:</strong>
-  <%= @order.user_id %>
-</p>
-
+<h2>Order detail:</h2>
+  
 <p>
   <strong>Price:</strong>
   <%= @order.price %>
@@ -12,33 +11,31 @@
 
 <p>
   <strong>Shipping address:</strong>
-  <%= @order.shipping_address_id %>
+  <div>
+    <%= @order.shipping_address.ship_to %> <br>
+    <%= @order.shipping_address.address %> <br>
+    <%= @order.shipping_address.city %>, <%= @order.shipping_address.state %> <%= @order.shipping_address.zip %>
+  </div>
 </p>
 
 <p>
-  <strong>Shipped:</strong>
-  <%= @order.shipped %>
+  <strong>Order created at:</strong>
+  <div>
+    <%= @order.created_at.localtime %> <br>
+  </div>
 </p>
-
-<p>
-  <strong>Tracking number:</strong>
-  <%= @order.tracking_number %>
-</p>
-
-<p>
-  <strong>Via:</strong>
-  <%= @order.via %>
-</p>
-
-<p>
-  <strong>Note:</strong>
-  <%= @order.note %>
-</p>
-
 <p>
   <strong>Cart:</strong>
-  <%= @order.cart_id %>
-</p>
+  <table class="table">
+  
+  <% @order.cart.cart_items.each do |c_item| %>
+    <tr>
+      <td><%= c_item.item.title %></td>
+      <td><%= c_item.item.price %></td>
+      <td><%= link_to "Detail", item_path(c_item.item) %></td>
+    </tr>
+  <% end %>
+  </table>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
+</p>
 <%= link_to 'Back', orders_path %>

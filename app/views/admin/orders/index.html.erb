@@ -1,0 +1,28 @@
+<% tab "orders" %>
+
+
+
+<% @orders.each do |order| %>
+  <div class="order col-lg-3">
+    <span class="address">
+      <%= order.shipping_address.ship_to %> <br>
+      <%= order.shipping_address.address %> <br>
+      <%= order.shipping_address.city %>, <%= order.shipping_address.state %> <%= order.shipping_address.zip %>
+    </span>
+    <span class="price">$ <%= order.price %></span>
+    <div class="links">
+      <%= button_link_to 'Edit', edit_order_path(order) %>
+      <%= link_to 'Delete', order_path(order), {data: {method: 'delete', confirm: 'Are you sure to delete this order?'}} %>
+    </div>
+  </div>
+<% end %>
+
+<div class="clearfix">&nbsp;</div>
+<style>
+.price {
+  display: block;
+  color: red;
+  font-size: x-large;
+  text-align: right;
+}
+</style>

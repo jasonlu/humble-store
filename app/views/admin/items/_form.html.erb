@@ -1,0 +1,141 @@
+<%= form_for(@item, html: {class: 'form-horizontal'}) do |f| %>
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :category_id, {class: 'control-label col-lg-1'} %>
+    <div class="col-lg-11">
+      <% #collection_select(object, method, collection, value_method, text_method, options = {}, html_options = {}) %>
+      <%= f.collection_select(:category_id, Category.all, :id, :title, {}, {class: 'form-control'}) %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :title, {class: 'control-label col-lg-1'} %>
+    <div class="col-lg-11">
+    <%= f.text_field :title, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :cover_image, {class: 'control-label col-lg-1'} %>
+    <div class="col-lg-11">
+    <%= f.file_field :cover_image %>
+    <div id="cover-image">
+      <% if @item.cover_image.blank? %>
+      Drop zone
+      <% else %>
+      <img src="<%= @item.cover_image %>" alt="">
+      <% end %>
+    </div>
+    <%= f.hidden_field :cover_image %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :description, {class: 'control-label col-lg-1'} %>
+    <div class="col-lg-11">
+    <%= f.cktext_area :description, :class => "form-control", :ckeditor => {:language => "en"} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :briefing, {class: 'control-label col-lg-1'} %>
+    <div class="col-lg-11">
+    <%= f.text_area :briefing, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :price, {class: 'control-label col-lg-1'} %>
+    <div class="col-lg-11">
+    <%= f.text_field :price, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :stock, {class: 'control-label col-lg-1'} %>
+    <div class="col-lg-11">
+    <%= f.number_field :stock, class: 'form-control' %>
+    <span>Enter minus number(-1) to indicate unlimited stock.</span>
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<table class="upload_files"></table>
+
+<%= javascript_include_tag "/javascripts/jquery.fileupload.js" %>
+<!--
+<%= javascript_include_tag "/javascripts/jquery.fileupload-ui.js" %>
+<%= javascript_include_tag "/javascripts/jquery.fileupload-image.js" %>
+<%= javascript_include_tag "/javascripts/jquery.iframe-transport.js" %>
+-->
+<style>
+#cover-image {
+  display: block;
+  width:300px;
+  height:300px;
+  border: 1px solid #000;
+  overflow: hidden;
+  line-height: 300px;
+  text-align: center;
+}
+#cover-image img {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 0;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+</style>
+<script>
+
+$(function () {
+  $('#cover-image').fileupload({
+      url: '/items/new/upload_image_cover',
+      dataType: 'json',
+      maxFileSize: 5000000,
+      acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+      // add: function (e, data) {
+      //     console.log('add');
+      //     $.each(data.files, function (index, file) {
+      //         console.log('Added file: ' + file.name);
+      //         console.log(data.files);
+      //         //$('.upload_files').append(data.files);
+      //     });
+      //     $(this).html('<img src="' + URL.createObjectURL(data.files[0]) + '"/>');
+// 
+      //     // var jqXHR = data.submit()
+      //     // .success(function (result, textStatus, jqXHR) {/* ... */})
+      //     // .error(function (jqXHR, textStatus, errorThrown) {/* ... */})
+      //     // .complete(function (result, textStatus, jqXHR) {
+      //     //     console.log("complete");
+      //     //     //$('.upload_files').append('<tr><td>'+ result +'</td></tr>');
+      //     // });
+      // },
+      done: function (e, data) {
+        //console.log(data.result);
+        console.log("done");
+        /*
+        $.each(data.result.filepath, function (index, file) {
+            $('<p/>').text(file.name).appendTo(document.body);
+        });
+        */
+        $("input[name='item[cover_image]'][type=file]").remove();
+        $(this).html("<img src='" + data.result.filepath + "' >");
+        $("input[name='item[cover_image]']").each(function(){
+          $(this).attr('value', data.result.filepath);
+        });
+      }
+  });
+});
+
+</script>

@@ -1,0 +1,24 @@
+<% tab "users" %>
+
+
+<table class="table table-straped">
+  <tr>
+    <th>Email</th>
+    <th>Created at</th>
+    <th>Last sign in at</th>
+    <th>Account type</th>
+    <th></th>
+  </tr>
+<% @users.each do |user| %>
+
+<tr>
+  <td><%= user.email %></td>
+  <td><%= user.created_at.localtime %></td>
+  <td><%= user.last_sign_in_at.localtime %></td>
+  <td><%= user.provider %></td>
+  <td><%= link_to "Edit", user_path(user) %></td>
+</tr>
+<% end %>
+
+</table>
+<div class="clearfix">&nbsp;</div>

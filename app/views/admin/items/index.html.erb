@@ -1,0 +1,20 @@
+<% tab "items" %>
+
+
+
+<% @items.each do |item| %>
+  <div class="item col-lg-3">
+    <%= image_tag item.cover_image, alt: "Cover image of #{item.title}" %>
+    <h2><%= item.title %></h2>
+    <span class="briefing"><%= item.briefing %></span>
+    <span class="price">$ <%= item.price %></span>
+    
+    <div class="links">
+      <%= button_link_to 'Edit', edit_item_path(item) %>
+      <%= button_link_to 'Delete', item_path(item), {data: {method: 'delete', confirm: 'Are you sure to delete this item?'}} %>
+      
+    </div>
+  </div>
+<% end %>
+
+<div class="clearfix">&nbsp;</div>

@@ -3,8 +3,8 @@ development: &default
   encoding: utf8
   database: humble_store_dev
   host: localhost
-  username: humble_store
-  password: '!QAZ2wsx'
+  username: user
+  password: 'password'
 
 
 test: &TEST
@@ -16,5 +16,5 @@ production: &PROD
   encoding: utf8
   database: humble_store_prod
   host: localhost
-  username: humble_store
-  password: '!QAZ2wsx'
+  username: user
+  password: 'password'

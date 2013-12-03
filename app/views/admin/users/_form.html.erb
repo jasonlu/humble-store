@@ -1,0 +1,25 @@
+<%= form_for(@user, html: {class: 'form-horizontal'}) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :email, {class: 'control-label col-lg-1'} %>
+    <div class="col-lg-11">
+      <% #collection_select(object, method, collection, value_method, text_method, options = {}, html_options = {}) %>
+      <%= f.email_field :email, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

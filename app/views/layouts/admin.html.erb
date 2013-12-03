@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield(:page_title) %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag    "admin/application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "admin/application", "data-turbolinks-track" => true %>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+  <% unless notice.blank? and alert.blank? %>
+  <div id="flash-msg-container" class="">
+    <p class="alert alert-info"><%= notice %></p>
+    <p class="alert alert-error"><%= alert %></p>
+  </div>
+  <% end %>
+    
+    <div class="container">
+      <%= render :partial => "/admin/layouts/main_nav" %>
+      <%= render :partial => "/admin/layouts/breadcrumb" %>
+      
+      <div id="content">
+        <%= yield %>
+      </div>
+      <!-- Site footer -->
+      <%= render :partial => "/admin/layouts/footer" %>
+
+    </div> <!-- /container -->
+    
+
+    
+  </body>
+</html>

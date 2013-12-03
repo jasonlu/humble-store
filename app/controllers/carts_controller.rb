@@ -79,6 +79,9 @@ class CartsController < ApplicationController
     def set_cart
       session_id = cart_id
       @cart = Cart.find_by_session_id(session_id)
+      if @cart.nil?
+        @cart = Cart.new
+      end
       #@cart = Cart.find(params[:id])
     end
 

@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @item.category_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @item.title %>
+</p>
+
+<p>
+  <strong>Cover image:</strong>
+  <%= image_tag @item.cover_image, :class => 'cover-image' %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @item.description.html_safe %>
+</p>
+
+<p>
+  <strong>Briefing:</strong>
+  <%= @item.briefing %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @item.price %>
+</p>
+
+<p>
+  <strong>Stock:</strong>
+  <%= @item.stock %>
+</p>
+
+
+<p>
+  <strong>Stock:</strong>
+  <%= @item.stock_status %>
+</p>
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>
+
+<style>
+.cover-image {
+  max-width: 300px;
+  display: block;
+}
+</style>

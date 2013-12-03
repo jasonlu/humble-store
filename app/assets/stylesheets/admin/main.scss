@@ -1,0 +1,141 @@
+$primary-color: #333;
+$dialog-bg: #fff;
+$border-color: #ccc;
+$alert-color: #c43c35;
+$fadeout-color: #ccc;
+$font-size: 14px;
+$line-height: 16px;
+body {
+
+}
+#flash-msg-container {
+  display: none;
+  position: fixed;
+  top:0;
+  width: 100%;
+  z-index: 120;
+  height: auto;
+  .alert {
+    width: 500px;
+    margin: 0 auto;
+  }
+}
+
+div.container {
+  width: 100%;
+  box-sizing: border-box;
+  div#content {
+    min-height: 700px;
+  }
+  footer.footer {
+    font-size: small;
+    color: $fadeout-color;
+  }
+}
+div.container nav.navbar {
+  //background-color: $primary-color;
+  
+  li.dropdown {
+    form.login-form {
+      width: 300px;
+      box-sizing: border-box;
+      padding: 10px;
+      .btn-signin-with-facebook {
+        display: block;
+        margin: 10px auto;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+.btn-close-dialog {
+  display: block;
+  overflow: hidden;
+  /*
+  text-indent: -100px;
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  
+  border: 1px solid $alert-color;
+  background: $alert-color;
+  background-image: -webkit-linear-gradient(top, rgb(238, 95, 91), rgb(196, 60, 53));
+  */
+  color: $alert-color;
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  cursor: pointer;
+}
+
+.btn-close-dialog:hover {
+  color:#ccc;
+}
+
+div.container {
+  position: relative;
+  .masthead {
+    height: 100px;
+    
+  }
+  #content {
+    .btn-login {
+      display:none;
+    }
+    form.login-form {
+
+      display: block;
+      width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 2em;
+      .btn-close-dialog {
+        display: none;
+      }
+    }
+    .btn-signin-with-facebook {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+
+.nav-fix {
+  position: fixed;
+  
+  top:0;
+  left:0;
+  right:0;
+  width: auto;
+  z-index: 100;
+}
+div.item {
+  h2 {
+    font-size: 16px;
+    line-height: 20px;
+    height: 40px;
+  }
+  img {
+    
+    
+    max-width: 100%;
+    max-height: 300px;
+
+    width: auto;
+    height: auto;
+  }
+  .briefing {
+    box-sizing: border-box;
+    height: 4 * $line-height;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+  }
+  margin-bottom: 20px;
+}
