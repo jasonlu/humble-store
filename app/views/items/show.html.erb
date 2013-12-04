@@ -12,12 +12,12 @@
 
 <p>
   <strong>Cover image:</strong>
-  <%= @item.cover_image %>
+  <img src="<%= @item.cover_image %>" style="width: 300px; max-height: 300px;">
 </p>
 
 <p>
   <strong>Description:</strong>
-  <%= @item.description.raw %>
+  <%= @item.description.html_safe %>
 </p>
 
 <p>
